@@ -2,10 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('register', views.register, name='register'),
-    path('profile/<str:username>', views.profile, name='profile'),
-    path('settings', views.editProfile, name='edit_profile'),
-    path('delete', views.deleteProfile, name='delete_profile'),
-    path('login', views.login, name='login'),
-    path('logout', views.logout, name='logout'),
+    path('all_quiz', views.all_quiz_view, name='all_quiz'),
+    path('search/<str:category>', views.search_view, name='search'),
+    path('<int:quiz_id>', views.quiz_view, name='quiz'),
+    path('<int:submission_id>/result/', views.quiz_result_view, name='quiz_result'),
 ]
