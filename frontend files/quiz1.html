@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Timer</title>
+    <style>
+        /* Add your styles here */
+        #timer {
+            font-size: 20px;
+            color: black;
+        }
+        #quiz-container {
+            margin-inline-start: 20px;
+            display: none;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Start Quiz Button -->
+    <button id="start-quiz">Take Quiz</button>
+
+    <!-- Timer Display -->
+    <div id="timer"></div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container">
+        <div id="quiz-questions">
+            <!-- Your quiz questions go here -->
+            <p>Question 1: What is the capital of France?</p>
+            <button>A) Berlin</button>
+            <button>B) Madrid</button>
+            <button>C) Paris</button>
+            <button>D) Rome</button>
+
+            <p>Question 2: Who developed the theory of relativity?</p>
+            <button>A) Newton</button>
+            <button>B) Einstein</button>
+            <button>C) Galileo</button>
+            <button>D) Tesla</button>
+
+            <!-- Add more questions as needed -->
+        </div>
+    </div>
+
+    <script>
+        // Grab the elements
+        const startButton = document.getElementById("start-quiz");
+        const quizContainer = document.getElementById("quiz-container");
+        const timerDisplay = document.getElementById("timer");
+
+        let quizTime = 60; // Set your quiz duration in seconds
+        let timer;
+
+        // Function to start the quiz and timer
+        startButton.addEventListener("click", () => {
+            // Hide the start button
+            startButton.style.display = "none";
+            
+            // Show the quiz
+            quizContainer.style.display = "block";
+            
+            // Start the timer
+            startTimer();
+        });
+
+        // Function to start the timer
+        function startTimer() {
+            timer = setInterval(() => {
+                if (quizTime > 0) {
+                    quizTime--;
+                    timerDisplay.textContent = `Time remaining: ${quizTime} seconds`;
+                } else {
+                    clearInterval(timer); // Stop the timer
+                    endQuiz(); // Close the quiz
+                }
+            }, 1000);
+        }
+
+        // Function to end the quiz
+        function endQuiz() {
+            quizContainer.style.display = "none";
+            timerDisplay.textContent = "Time's up! Quiz over.";
+        }
+    </script>
+
+</body>
+</html>
